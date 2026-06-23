@@ -42,6 +42,61 @@ print(client.monthly_projection(requests_per_day=100).format())
 print(client.usage_summary())
 ```
 
+## Static Analyzer (CLI)
+
+Scan Python source files for token-wasting patterns before execution:
+
+```bash
+tsave scan myapp.py
+```
+
+Example output:
+
+```
+tsave: myapp.py -- 3 issue(s)
+
+  myapp.py:12  [api-in-loop]
+  API call inside a loop -- each iteration sends a full request
+  ~5,000 tokens wasted per call
+  Fix:
+    # Batch messages or collect results, then make one call
+    results = []
+    for item in items:
+        results.append(item)
+    response = client.messages.create(
+        model="claude-haiku-4-5",
+        messages=[{"role": "user", "content": "\n".join(results)}],
+    )
+
+  myapp.py:12  [no-model-routing]
+  Using claude-opus-4-8 for a simple call -- Haiku may suffice
+  ~0 tokens wasted per call
+  Fix:
+    # Route by complexity
+    model = "claude-haiku-4-5"  # simple tasks
+    # model = "claude-opus-4-8"     # complex tasks only
+
+  myapp.py:8  [system-prompt-redefined]
+  System prompt assigned 3 times -- define once and cache
+  ~2,000 tokens wasted per call
+  Fix:
+    # Define once at module level with cache_control
+    SYSTEM = [{"type": "text", "text": prompt, "cache_control": {"type": "ephemeral"}}]
+
+Total estimated waste: ~7,000 tokens/call
+```
+
+### Rules detected
+
+| Rule | Description |
+|---|---|
+| `api-in-loop` | API call inside for/while loop |
+| `full-file-per-call` | `open().read()` passed directly in API call |
+| `no-model-routing` | Expensive model used for simple calls |
+| `system-prompt-redefined` | System prompt assigned multiple times |
+| `uncached-system-prompt` | System prompt in loop without `cache_control` |
+| `uncompressed-history` | Messages appended in loop without compression |
+
 ## Features
 
 - **Token counting** via the official `count_tokens` API (not tiktoken)

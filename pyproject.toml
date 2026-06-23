@@ -16,5 +16,8 @@ dev = [
     "pytest>=8.0",
 ]
 
+[project.scripts]
+tsave = "token_saver.cli:main"
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
