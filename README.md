@@ -10,7 +10,7 @@ token-saver
 I got tired of watching my Anthropic bill grow without knowing why.
 So I built this: a wrapper around the official SDK that tells you before you run your code exactly where your tokens are going — and what to do about it.
 ```bash
-pip install token-saver
+pip install tsave
 tsave scan chatbot.py
 ```
 No API key needed for that last command. It reads your Python file, walks the AST, and tells you what's wrong.
@@ -103,7 +103,7 @@ token-saver
 Mi ero stancato di guardare la mia bolletta Anthropic crescere senza capire perché.
 Quindi ho costruito questo: un wrapper attorno all'SDK ufficiale che ti dice prima ancora di eseguire il codice dove stanno andando i tuoi token — e cosa fare al riguardo.
 ```bash
-pip install token-saver
+pip install tsave
 tsave scan chatbot.py
 ```
 Per quest'ultimo comando non serve nessuna API key. Legge il file Python, analizza l'AST, e ti dice cosa c'è che non va.
