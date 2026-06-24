@@ -71,6 +71,9 @@ Pattern	What it means
 `system-prompt-redefined`	Your system prompt gets recreated on every call
 `uncached-system-prompt`	Your system prompt is in a loop without `cache_control`
 `uncompressed-history`	Your message history keeps growing with no compression
+
+> Files that can't be parsed (syntax errors, unsupported encodings) are reported as "could not analyze" — never silently skipped or marked clean. The CLI exits non-zero on them. UTF-8 BOM files are handled transparently.
+
 ---
 Development
 ```bash
@@ -164,6 +167,9 @@ Pattern	Cosa significa
 `system-prompt-redefined`	Il tuo system prompt viene ricreato a ogni chiamata
 `uncached-system-prompt`	Il tuo system prompt è in un loop senza `cache_control`
 `uncompressed-history`	La cronologia dei messaggi continua a crescere senza compressione
+
+> I file non analizzabili (errori di sintassi, encoding non supportati) vengono segnalati come "could not analyze" — mai saltati in silenzio o dati per "puliti". La CLI esce con codice ≠0 su questi file. I file con BOM UTF-8 sono gestiti in modo trasparente.
+
 ---
 Sviluppo
 ```bash
