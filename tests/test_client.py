@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock, patch
 
-from tsave.client import TokenSaverClient, UsageRecord
+from tsave.client import TsaveClient, UsageRecord
 from tsave.core.tokenizer import PRICING
 from tests.conftest import FakeMessage, FakeUsage, FakeTokenCount
 
@@ -24,12 +24,12 @@ class TestUsageRecord:
         assert r.output_cost == 15.00
 
 
-class TestTokenSaverClient:
-    def _make_client(self) -> tuple[TokenSaverClient, MagicMock]:
+class TestTsaveClient:
+    def _make_client(self) -> tuple[TsaveClient, MagicMock]:
         with patch("tsave.client.anthropic.Anthropic") as MockAnthropic:
             mock_inner = MagicMock()
             MockAnthropic.return_value = mock_inner
-            client = TokenSaverClient(api_key="fake")
+            client = TsaveClient(api_key="fake")
             return client, mock_inner
 
     def test_create_tracks_usage(self):
@@ -118,3 +118,8 @@ class TestTokenSaverClient:
     def test_raw_exposes_inner_client(self):
         client, mock_inner = self._make_client()
         assert client.raw is mock_inner
+
+
+def test_legacy_alias_is_tsaveclient():
+    from tsave import TokenSaverClient, TsaveClient
+    assert TokenSaverClient is TsaveClient

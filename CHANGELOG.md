@@ -16,6 +16,11 @@ grouped by Added / Changed / Fixed / Removed. When cutting release X.Y.Z:
 
 ## [Unreleased]
 
+### Changed
+- Renamed the client class `TokenSaverClient` to `TsaveClient` for naming
+  consistency with the package and CLI. The old name `TokenSaverClient` remains
+  available as a backwards-compatible alias.
+
 ## [0.1.3] - 2026-06-24
 
 ### Fixed

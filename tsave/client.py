@@ -1,4 +1,4 @@
-"""TokenSaverClient — drop-in replacement for anthropic.Anthropic with built-in cost tracking."""
+"""TsaveClient — drop-in replacement for anthropic.Anthropic with built-in cost tracking."""
 
 from __future__ import annotations
 
@@ -41,7 +41,7 @@ class UsageRecord:
         return self.input_cost + self.output_cost
 
 
-class TokenSaverClient:
+class TsaveClient:
     """Wraps anthropic.Anthropic with token counting, cost tracking, analysis, and compression."""
 
     def __init__(self, **kwargs):
@@ -158,3 +158,8 @@ class TokenSaverClient:
         if len(models_used) > 1:
             lines.append(f"Models used: {', '.join(sorted(models_used))}")
         return "\n".join(lines)
+
+
+# Backwards-compatible alias. The class was renamed from TokenSaverClient to
+# TsaveClient; the old name is kept so existing 0.1.x code keeps working.
+TokenSaverClient = TsaveClient

@@ -32,9 +32,9 @@ Sonnet 4.6 pricing, $3/MTok input.
 ---
 Usage
 ```python
-from tsave import TokenSaverClient
+from tsave import TsaveClient
 
-client = TokenSaverClient()
+client = TsaveClient()
 
 # count tokens before spending them
 tc = client.count_tokens(model="claude-sonnet-4-6", messages=messages)
@@ -128,9 +128,9 @@ Prezzi Sonnet 4.6, $3/MTok in input.
 ---
 Utilizzo
 ```python
-from tsave import TokenSaverClient
+from tsave import TsaveClient
 
-client = TokenSaverClient()
+client = TsaveClient()
 
 # conta i token prima di spenderli
 tc = client.count_tokens(model="claude-sonnet-4-6", messages=messages)

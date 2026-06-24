@@ -1,12 +1,12 @@
-"""Demo showing TokenSaverClient features."""
+"""Demo showing TsaveClient features."""
 
-from tsave import TokenSaverClient
+from tsave import TsaveClient
 
 MODEL = "claude-sonnet-4-6"
 
 
 def main():
-    client = TokenSaverClient()
+    client = TsaveClient()
 
     messages = [{"role": "user", "content": "What is the capital of France?"}]
 
