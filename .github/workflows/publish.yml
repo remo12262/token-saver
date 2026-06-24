@@ -3,6 +3,7 @@ name: publish
 on:
   release:
     types: [published]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -24,7 +25,6 @@ jobs:
   pypi-publish:
     needs: build
     runs-on: ubuntu-latest
-    environment: pypi
     permissions:
       id-token: write
     steps:
