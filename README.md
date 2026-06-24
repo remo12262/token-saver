@@ -1,10 +1,10 @@
 tsave
 <p align="center">
-  <a href="https://github.com/remo12262/token-saver/actions"><img src="https://img.shields.io/badge/tests-85%20passing-brightgreen" alt="tests"></a>
+  <a href="https://github.com/remo12262/token-saver/actions/workflows/tests.yml"><img src="https://github.com/remo12262/token-saver/actions/workflows/tests.yml/badge.svg" alt="tests"></a>
   <a href="https://pypi.org/project/tsave/"><img src="https://img.shields.io/pypi/v/tsave" alt="PyPI"></a>
   <img src="https://img.shields.io/badge/python-3.10%2B-blue" alt="Python">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
-  <img src="https://img.shields.io/badge/zero--dependencies-✓-brightgreen" alt="Zero dependencies">
+  <img src="https://img.shields.io/badge/dependencies-anthropic-blue" alt="dependencies">
 </p>
 ---
 I got tired of watching my Anthropic bill grow without knowing why.
@@ -93,11 +93,11 @@ MIT license. Built in one evening with Claude Code.
 ---
 tsave
 <p align="center">
-  <a href="https://github.com/remo12262/token-saver/actions"><img src="https://img.shields.io/badge/tests-85%20passing-brightgreen" alt="tests"></a>
+  <a href="https://github.com/remo12262/token-saver/actions/workflows/tests.yml"><img src="https://github.com/remo12262/token-saver/actions/workflows/tests.yml/badge.svg" alt="tests"></a>
   <a href="https://pypi.org/project/tsave/"><img src="https://img.shields.io/pypi/v/tsave" alt="PyPI"></a>
   <img src="https://img.shields.io/badge/python-3.10%2B-blue" alt="Python">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
-  <img src="https://img.shields.io/badge/zero--dependencies-✓-brightgreen" alt="Zero dependencies">
+  <img src="https://img.shields.io/badge/dependencies-anthropic-blue" alt="dependencies">
 </p>
 ---
 Mi ero stancato di guardare la mia bolletta Anthropic crescere senza capire perché.
