@@ -1,6 +1,6 @@
 """Demo showing TokenSaverClient features."""
 
-from token_saver import TokenSaverClient
+from tsave import TokenSaverClient
 
 MODEL = "claude-sonnet-4-6"
 

@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "tsave"
-version = "0.1.1"
+version = "0.1.2"
 description = "Drop-in Anthropic client wrapper with token counting, cost analysis, and semantic compression"
 requires-python = ">=3.10"
 dependencies = [
@@ -17,10 +17,10 @@ dev = [
 ]
 
 [project.scripts]
-tsave = "token_saver.cli:main"
+tsave = "tsave.cli:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["token_saver"]
+packages = ["tsave"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

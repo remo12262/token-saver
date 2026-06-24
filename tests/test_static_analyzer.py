@@ -1,6 +1,6 @@
 import textwrap
 
-from token_saver.core.static_analyzer import scan_source, Finding, ScanReport
+from tsave.core.static_analyzer import scan_source, Finding, ScanReport
 
 
 def _scan(code: str) -> ScanReport:

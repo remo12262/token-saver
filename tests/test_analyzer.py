@@ -1,4 +1,4 @@
-from token_saver.core.analyzer import (
+from tsave.core.analyzer import (
     AnalysisReport,
     Suggestion,
     _check_message_length,

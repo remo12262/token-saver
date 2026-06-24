@@ -32,7 +32,7 @@ Sonnet 4.6 pricing, $3/MTok input.
 ---
 Usage
 ```python
-from token_saver import TokenSaverClient
+from tsave import TokenSaverClient
 
 client = TokenSaverClient()
 
@@ -125,7 +125,7 @@ Prezzi Sonnet 4.6, $3/MTok in input.
 ---
 Utilizzo
 ```python
-from token_saver import TokenSaverClient
+from tsave import TokenSaverClient
 
 client = TokenSaverClient()
 

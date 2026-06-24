@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock
 
-from token_saver.core.compressor import (
+from tsave.core.compressor import (
     CompressedResult,
     _score_message_relevance,
     compress,
