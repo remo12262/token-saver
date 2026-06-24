@@ -10,6 +10,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Verify CHANGELOG has an entry for this version
+        run: |
+          if [ "${{ github.event_name }}" = "release" ]; then
+            VERSION="${{ github.event.release.tag_name }}"
+            VERSION="${VERSION#v}"
+          else
+            VERSION=$(grep -E '^version *= *"' pyproject.toml | head -1 | sed -E 's/.*"([^"]+)".*/\1/')
+          fi
+          echo "Checking CHANGELOG for version $VERSION"
+          if ! grep -q "## \[$VERSION\]" CHANGELOG.md; then
+            echo "::error::CHANGELOG.md has no '## [$VERSION]' section. Promote [Unreleased] before releasing."
+            exit 1
+          fi
+          echo "CHANGELOG entry found for $VERSION."
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
