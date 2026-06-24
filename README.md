@@ -1,7 +1,7 @@
 token-saver
 <p align="center">
   <a href="https://github.com/remo12262/token-saver/actions"><img src="https://img.shields.io/badge/tests-85%20passing-brightgreen" alt="tests"></a>
-  <a href="https://pypi.org/project/token-saver/"><img src="https://img.shields.io/badge/pypi-v0.1.0-blue" alt="PyPI"></a>
+  <a href="https://pypi.org/project/tsave/"><img src="https://img.shields.io/pypi/v/tsave" alt="PyPI"></a>
   <img src="https://img.shields.io/badge/python-3.10%2B-blue" alt="Python">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/zero--dependencies-✓-brightgreen" alt="Zero dependencies">
@@ -94,7 +94,7 @@ MIT license. Built in one evening with Claude Code.
 token-saver
 <p align="center">
   <a href="https://github.com/remo12262/token-saver/actions"><img src="https://img.shields.io/badge/tests-85%20passing-brightgreen" alt="tests"></a>
-  <a href="https://pypi.org/project/token-saver/"><img src="https://img.shields.io/badge/pypi-v0.1.0-blue" alt="PyPI"></a>
+  <a href="https://pypi.org/project/tsave/"><img src="https://img.shields.io/pypi/v/tsave" alt="PyPI"></a>
   <img src="https://img.shields.io/badge/python-3.10%2B-blue" alt="Python">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/zero--dependencies-✓-brightgreen" alt="Zero dependencies">
