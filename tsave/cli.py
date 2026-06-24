@@ -13,19 +13,23 @@ def main():
 
     files = sys.argv[2:]
     total_findings = 0
+    errors = 0
 
     for f in files:
         p = Path(f)
         if not p.exists():
             print(f"tsave: {f} -- file not found", file=sys.stderr)
+            errors += 1
             continue
         report = scan_file(p)
         print(report.format())
+        if report.error is not None:
+            errors += 1
         total_findings += len(report.findings)
         if len(files) > 1:
             print()
 
-    sys.exit(1 if total_findings > 0 else 0)
+    sys.exit(1 if (total_findings > 0 or errors > 0) else 0)
 
 
 if __name__ == "__main__":

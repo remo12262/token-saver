@@ -31,12 +31,15 @@ class Finding:
 class ScanReport:
     file: str
     findings: list[Finding] = field(default_factory=list)
+    error: str | None = None
 
     @property
     def total_estimated_waste(self) -> int:
         return sum(f.estimated_waste_tokens for f in self.findings)
 
     def format(self) -> str:
+        if self.error is not None:
+            return f"tsave: {self.file} -- could not analyze: {self.error}"
         if not self.findings:
             return f"tsave: {self.file} -- no issues found"
         lines = [f"tsave: {self.file} -- {len(self.findings)} issue(s)\n"]
@@ -255,10 +258,15 @@ class _Visitor(ast.NodeVisitor):
 
 
 def scan_source(source: str, filename: str = "<stdin>") -> ScanReport:
+    # Strip a leading UTF-8 BOM so BOM-prefixed sources parse correctly.
+    if source and ord(source[0]) == 0xFEFF:
+        source = source[1:]
     try:
         tree = ast.parse(source)
-    except SyntaxError:
-        return ScanReport(file=filename)
+    except SyntaxError as e:
+        # Surface the parse failure instead of silently reporting "no issues".
+        where = f"line {e.lineno}: " if e.lineno else ""
+        return ScanReport(file=filename, error=f"syntax error ({where}{e.msg})")
 
     lines = source.splitlines()
     visitor = _Visitor(filename, lines)
@@ -269,5 +277,6 @@ def scan_source(source: str, filename: str = "<stdin>") -> ScanReport:
 
 def scan_file(path: str | Path) -> ScanReport:
     p = Path(path)
-    source = p.read_text(encoding="utf-8")
+    # utf-8-sig transparently strips a BOM if the file has one.
+    source = p.read_text(encoding="utf-8-sig")
     return scan_source(source, str(p))

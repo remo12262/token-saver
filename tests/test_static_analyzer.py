@@ -1,6 +1,6 @@
 import textwrap
 
-from tsave.core.static_analyzer import scan_source, Finding, ScanReport
+from tsave.core.static_analyzer import scan_source, scan_file, Finding, ScanReport
 
 
 def _scan(code: str) -> ScanReport:
@@ -131,3 +131,36 @@ class TestScanReport:
             Finding("x.py", 2, "b", "m", 2000, "f"),
         ])
         assert report.total_estimated_waste == 3000
+
+
+class TestBomAndSyntaxErrors:
+    _LOOP_CODE = (
+        "for item in items:\n"
+        "    client.messages.create(model='claude-sonnet-4-6', messages=[])\n"
+    )
+
+    def test_bom_prefixed_source_is_still_analyzed(self):
+        # A leading UTF-8 BOM must not hide real findings.
+        report = scan_source(chr(0xFEFF) + self._LOOP_CODE, "bom.py")
+        assert report.error is None
+        assert "api-in-loop" in _rules(report)
+
+    def test_syntax_error_is_reported_not_silently_clean(self):
+        report = scan_source("def broken(:\n    pass\n", "broken.py")
+        assert report.error is not None
+        text = report.format()
+        assert "could not analyze" in text
+        assert "no issues found" not in text
+
+    def test_scan_file_strips_bom(self, tmp_path):
+        # scan_file must read BOM files (utf-8-sig) and still detect issues.
+        p = tmp_path / "withbom.py"
+        p.write_bytes(b"\xef\xbb\xbf" + self._LOOP_CODE.encode("utf-8"))
+        report = scan_file(p)
+        assert report.error is None
+        assert "api-in-loop" in _rules(report)
+
+    def test_clean_report_has_no_error(self):
+        report = scan_source("x = 1\n", "ok.py")
+        assert report.error is None
+        assert "no issues found" in report.format()
