@@ -1,4 +1,4 @@
-token-saver
+tsave
 <p align="center">
   <a href="https://github.com/remo12262/token-saver/actions"><img src="https://img.shields.io/badge/tests-85%20passing-brightgreen" alt="tests"></a>
   <a href="https://pypi.org/project/tsave/"><img src="https://img.shields.io/pypi/v/tsave" alt="PyPI"></a>
@@ -16,10 +16,10 @@ tsave scan chatbot.py
 No API key needed for that last command. It reads your Python file, walks the AST, and tells you what's wrong.
 ---
 What it actually does
-There are four things token-saver can do for you.
+There are four things tsave can do for you.
 Scan your code before you run it. This is the part I'm most proud of. Point it at a `.py` file and it finds patterns like API calls inside loops, system prompts sent without `cache_control`, conversation history growing unbounded — the kind of stuff that quietly triples your bill. Each finding comes with the line number, an estimate of how many tokens you're burning, and a ready-to-paste fix.
-Count tokens accurately. Not with tiktoken — tiktoken undercounts Claude by 15–20%. token-saver uses the official Anthropic `count_tokens` API, the same one that feeds the billing system.
-Compress long conversations. When a chat history gets long, token-saver summarizes the older turns while keeping recent context intact. In practice, this cuts 65–70% of tokens on multi-turn workloads.
+Count tokens accurately. Not with tiktoken — tiktoken undercounts Claude by 15–20%. tsave uses the official Anthropic `count_tokens` API, the same one that feeds the billing system.
+Compress long conversations. When a chat history gets long, tsave summarizes the older turns while keeping recent context intact. In practice, this cuts 65–70% of tokens on multi-turn workloads.
 Track what you spend. Every `client.create()` call gets logged. At the end of a session you can ask for a usage summary, an average cost per request, and a monthly projection.
 ---
 Numbers
@@ -91,7 +91,7 @@ MIT license. Built in one evening with Claude Code.
 ---
 ---
 ---
-token-saver
+tsave
 <p align="center">
   <a href="https://github.com/remo12262/token-saver/actions"><img src="https://img.shields.io/badge/tests-85%20passing-brightgreen" alt="tests"></a>
   <a href="https://pypi.org/project/tsave/"><img src="https://img.shields.io/pypi/v/tsave" alt="PyPI"></a>
@@ -109,10 +109,10 @@ tsave scan chatbot.py
 Per quest'ultimo comando non serve nessuna API key. Legge il file Python, analizza l'AST, e ti dice cosa c'è che non va.
 ---
 Cosa fa concretamente
-token-saver può fare quattro cose per te.
+tsave può fare quattro cose per te.
 Analizzare il codice prima che tu lo esegua. Questa è la parte di cui vado più fiero. Puntalo su un file `.py` e trova pattern come chiamate API dentro i loop, system prompt inviati senza `cache_control`, cronologie di conversazione che crescono senza controllo — il tipo di cose che silenziosamente triplicano la bolletta. Ogni finding mostra il numero di riga, una stima dei token sprecati, e una correzione pronta da incollare.
-Contare i token in modo preciso. Non con tiktoken — tiktoken sottostima Claude del 15–20%. token-saver usa l'API ufficiale `count_tokens` di Anthropic, la stessa che alimenta il sistema di fatturazione.
-Comprimere le conversazioni lunghe. Quando una cronologia di chat diventa lunga, token-saver riassume i turni più vecchi mantenendo il contesto recente intatto. In pratica, questo taglia il 65–70% dei token sui workload multi-turno.
+Contare i token in modo preciso. Non con tiktoken — tiktoken sottostima Claude del 15–20%. tsave usa l'API ufficiale `count_tokens` di Anthropic, la stessa che alimenta il sistema di fatturazione.
+Comprimere le conversazioni lunghe. Quando una cronologia di chat diventa lunga, tsave riassume i turni più vecchi mantenendo il contesto recente intatto. In pratica, questo taglia il 65–70% dei token sui workload multi-turno.
 Tracciare quello che spendi. Ogni chiamata `client.create()` viene registrata. A fine sessione puoi richiedere un riepilogo dei consumi, il costo medio per richiesta, e una proiezione mensile.
 ---
 I numeri
