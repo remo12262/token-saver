@@ -5,6 +5,17 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+<!--
+Release convention (Keep a Changelog):
+Keep an "Unreleased" section at the top. Add entries under it as changes land,
+grouped by Added / Changed / Fixed / Removed. When cutting release X.Y.Z:
+  1. Rename "## [Unreleased]" to "## [X.Y.Z] - YYYY-MM-DD".
+  2. Add a fresh, empty "## [Unreleased]" section above it.
+  3. Update the comparison links at the bottom.
+-->
+
+## [Unreleased]
+
 ## [0.1.3] - 2026-06-24
 
 ### Fixed
@@ -35,6 +46,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Renamed the PyPI distribution from `token-saver` to `tsave`
   (`pip install tsave`).
 
+[Unreleased]: https://github.com/remo12262/token-saver/compare/v0.1.3...HEAD
 [0.1.3]: https://github.com/remo12262/token-saver/releases/tag/v0.1.3
 [0.1.2]: https://github.com/remo12262/token-saver/releases/tag/v0.1.2
 [0.1.1]: https://github.com/remo12262/token-saver/releases/tag/v0.1.1
