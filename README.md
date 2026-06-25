@@ -149,7 +149,11 @@ MIT license. Built in one evening with Claude Code.
 
 ---
 ---
+---
 
+Built in one evening with Claude Code.
+
+[LinkedIn](https://www.linkedin.com/in/remopulcini/) · [GitHub](https://github.com/remo12262) · [quantumhorizon.it](https://www.quantumhorizon.it) </p>
 <!-- VERSIONE ITALIANA -->
 
 ## 🇮🇹 Italiano
