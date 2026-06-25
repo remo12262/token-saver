@@ -153,7 +153,7 @@ MIT license. Built in one evening with Claude Code.
 
 Built in one evening with Claude Code.
 
-[LinkedIn](https://www.linkedin.com/in/remopulcini/) · [GitHub](https://github.com/remo12262) · [quantumhorizon.it](https://www.quantumhorizon.it) </p>
+
 <!-- VERSIONE ITALIANA -->
 
 ## 🇮🇹 Italiano
@@ -282,5 +282,12 @@ pytest
 | Claude Opus 4.8 / 4.7 / 4.6 | $5,00/MTok | $25,00/MTok |
 | Claude Sonnet 4.6 | $3,00/MTok | $15,00/MTok |
 | Claude Haiku 4.5 | $1,00/MTok | $5,00/MTok |
+</P> ---
+
+📣 **Share / Condividi**
+
+[![LinkedIn](https://img.shields.io/badge/Share-LinkedIn-0A66C2?logo=linkedin)](https://www.linkedin.com/sharing/share-offsite/?url=https://github.com/remo12262/token-saver)
+[![Twitter/X](https://img.shields.io/badge/Share-X-000000?logo=x)](https://twitter.com/intent/tweet?url=https://github.com/remo12262/token-saver&text=tsave+—+predictive+token+optimizer+for+the+Anthropic+API)
+[![Facebook](https://img.shields.io/badge/Share-Facebook-1877F2?logo=facebook)](https://www.facebook.com/sharer/sharer.php?u=https://github.com/remo12262/token-saver)
 
 Licenza MIT. Costruito in una serata con Claude Code.
