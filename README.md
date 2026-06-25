@@ -102,50 +102,50 @@ tsave
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/dependencies-anthropic-blue" alt="dependencies">
 </p>
----
 Mi ero stancato di guardare la mia bolletta Anthropic crescere senza capire perché.
+</p>
 Quindi ho costruito questo: un wrapper attorno all'SDK ufficiale che ti dice prima ancora di eseguire il codice dove stanno andando i tuoi token — e cosa fare al riguardo.
 ```bash
 pip install tsave
 tsave scan chatbot.py
 ```
 Per quest'ultimo comando non serve nessuna API key. Legge il file Python, analizza l'AST, e ti dice cosa c'è che non va.
----
+---</p>
 Cosa fa concretamente
 tsave può fare quattro cose per te.
-Analizzare il codice prima che tu lo esegua. Questa è la parte di cui vado più fiero. Puntalo su un file `.py` e trova pattern come chiamate API dentro i loop, system prompt inviati senza `cache_control`, cronologie di conversazione che crescono senza controllo — il tipo di cose che silenziosamente triplicano la bolletta. Ogni finding mostra il numero di riga, una stima dei token sprecati, e una correzione pronta da incollare.
-Contare i token in modo preciso. Non con tiktoken — tiktoken sottostima Claude del 15–20%. tsave usa l'API ufficiale `count_tokens` di Anthropic, la stessa che alimenta il sistema di fatturazione.
+Analizzare il codice prima che tu lo esegua. Questa è la parte di cui vado più fiero. Puntalo su un file `.py` e trova pattern come chiamate API dentro i loop, system prompt inviati senza `cache_control`, cronologie di conversazione che crescono senza controllo — il tipo di cose che silenziosamente triplicano la bolletta. Ogni finding mostra il numero di riga, una stima dei token sprecati, e una correzione pronta da incollare.</p>
+Contare i token in modo preciso. Non con tiktoken — tiktoken sottostima Claude del 15–20%. tsave usa l'API ufficiale `count_tokens` di Anthropic, la stessa che alimenta il sistema di fatturazione.</p>
 Comprimere le conversazioni lunghe. Quando una cronologia di chat diventa lunga, tsave riassume i turni più vecchi mantenendo il contesto recente intatto. In pratica, questo taglia il 65–70% dei token sui workload multi-turno.
-Tracciare quello che spendi. Ogni chiamata `client.create()` viene registrata. A fine sessione puoi richiedere un riepilogo dei consumi, il costo medio per richiesta, e una proiezione mensile.
+Tracciare quello che spendi. Ogni chiamata `client.create()` viene registrata. A fine sessione puoi richiedere un riepilogo dei consumi, il costo medio per richiesta, e una proiezione mensile.</p>
 ---
-I numeri
-Questi sono risultati reali su workload reali, non benchmark sintetici:
+I numeri</p>
+Questi sono risultati reali su workload reali, non benchmark sintetici:</p>
 Scenario	Prima	Dopo	A 1K req/giorno
 Chatbot multi-turno (50 turni)	12.400 token	4.100 token −66.9%	risparmia $7.47/giorno
 Pipeline RAG (doc completo per chiamata)	18.200 token	5.600 token −69.2%	risparmia $11.34/giorno
 Classificatore batch (loop + Opus)	8.500 token	2.800 token −67.1%	risparmia $8.55/giorno
-Prezzi Sonnet 4.6, $3/MTok in input.
+Prezzi Sonnet 4.6, $3/MTok in input.</p>
 ---
 Utilizzo
 ```python
 from tsave import TsaveClient
 
 client = TsaveClient()
-
+</p>
 # conta i token prima di spenderli
 tc = client.count_tokens(model="claude-sonnet-4-6", messages=messages)
 print(tc.format())
 # 847 input tokens | est. $0.0025
-
+</p>
 # comprimi una conversazione lunga
 result = client.compress(model="claude-sonnet-4-6", messages=long_chat, keep_last_n=4)
 print(result.format())
 # Originale:   1.131 token (13 messaggi)
 # Compresso:   363 token (3 messaggi) — riduzione del 67.9%
-
+</p>
 # fai la vera chiamata — l'utilizzo viene tracciato automaticamente
 response = client.create(model="claude-sonnet-4-6", max_tokens=1024, messages=messages)
-
+</p>
 # vedi dove sei
 print(client.usage_summary())
 print(client.monthly_projection(requests_per_day=500).format())
@@ -158,7 +158,7 @@ tsave analyze              # breakdown dei token di una conversazione
 tsave cost                 # stima dei costi
 tsave compress             # comprimi un file di conversazione
 ```
----
+---</p>
 Cosa rileva lo scanner
 Pattern	Cosa significa
 `api-in-loop`	Stai facendo una richiesta API completa a ogni iterazione del loop
@@ -167,9 +167,9 @@ Pattern	Cosa significa
 `system-prompt-redefined`	Il tuo system prompt viene ricreato a ogni chiamata
 `uncached-system-prompt`	Il tuo system prompt è in un loop senza `cache_control`
 `uncompressed-history`	La cronologia dei messaggi continua a crescere senza compressione
-
+</p>
 > I file non analizzabili (errori di sintassi, encoding non supportati) vengono segnalati come "could not analyze" — mai saltati in silenzio o dati per "puliti". La CLI esce con codice ≠0 su questi file. I file con BOM UTF-8 sono gestiti in modo trasparente.
-
+</p>
 ---
 Sviluppo
 ```bash
@@ -178,12 +178,12 @@ cd token-saver
 pip install -e ".[dev]"
 pytest
 # 85 test, tutti passano senza API key
-```
+```</p>
 ---
 Modelli e prezzi
 Modello	Input	Output
 Claude Opus 4.8 / 4.7 / 4.6	$5.00/MTok	$25.00/MTok
 Claude Sonnet 4.6	$3.00/MTok	$15.00/MTok
 Claude Haiku 4.5	$1.00/MTok	$5.00/MTok
----
+---</p>
 Licenza MIT. Costruito in una serata con Claude Code.
