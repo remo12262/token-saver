@@ -4,8 +4,9 @@ build-backend = "hatchling.build"
 
 [project]
 name = "tsave"
-version = "0.2.0"
+version = "0.2.1"
 description = "Drop-in Anthropic client wrapper with token counting, cost analysis, and semantic compression"
+readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "anthropic>=0.40.0",

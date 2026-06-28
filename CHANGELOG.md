@@ -16,6 +16,11 @@ grouped by Added / Changed / Fixed / Removed. When cutting release X.Y.Z:
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-06-28
+
+### Fixed
+- Added `readme = "README.md"` to `pyproject.toml` so the README renders on PyPI.
+
 ## [0.2.0] - 2026-06-28
 
 ### Added
