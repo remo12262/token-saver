@@ -16,6 +16,22 @@ grouped by Added / Changed / Fixed / Removed. When cutting release X.Y.Z:
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-06-28
+
+### Added
+- `tsave.core.overflow` module with `create_with_overflow_recovery()` and
+  `OverflowRecoveryResult` for automatic context-length recovery: detects
+  `context_length_exceeded` errors, compresses conversation history, and
+  retries up to `max_retries` times with increasing aggressiveness.
+- `create_with_overflow_recovery` exported from the top-level `tsave` package.
+- 26 tests covering all overflow recovery scenarios.
+
+### Fixed
+- `_summarize_messages` now wraps the API call in `try/except`, returning `""`
+  on any error so compression degrades gracefully instead of raising.
+- Exhausted retries now raise `RuntimeError` instead of the mis-typed
+  `anthropic.BadRequestError`.
+
 ### Changed
 - Renamed the client class `TokenSaverClient` to `TsaveClient` for naming
   consistency with the package and CLI. The old name `TokenSaverClient` remains
