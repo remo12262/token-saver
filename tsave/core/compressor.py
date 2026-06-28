@@ -88,19 +88,22 @@ def _summarize_messages(
 
     joined = "\n".join(conversation_text)
 
-    resp = client.messages.create(
-        model=model,
-        max_tokens=512,
-        messages=[{
-            "role": "user",
-            "content": (
-                "Compress this conversation into 2-3 sentences max. "
-                "Keep only facts, decisions, and key terms. No filler.\n\n"
-                f"{joined}"
-            ),
-        }],
-    )
-    return resp.content[0].text
+    try:
+        resp = client.messages.create(
+            model=model,
+            max_tokens=512,
+            messages=[{
+                "role": "user",
+                "content": (
+                    "Compress this conversation into 2-3 sentences max. "
+                    "Keep only facts, decisions, and key terms. No filler.\n\n"
+                    f"{joined}"
+                ),
+            }],
+        )
+        return resp.content[0].text
+    except Exception:
+        return ""
 
 
 def compress(
